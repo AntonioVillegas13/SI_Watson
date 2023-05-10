@@ -12,18 +12,11 @@ import { Registrar } from "./app/screens/LoginScreen/RegistrarUsuario";
 import { ReseteoForm } from "./app/screens/LoginScreen/ReseteoCorreoScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "@rneui/base";
-import { AdminPedidos } from "./app/screens/AdministradorScreen/AdminPedidosScreen";
-import { Productos } from "./app/screens/AdministradorScreen/Productos";
-import { ModProd } from "./app/screens/AdministradorScreen/ModProd";
-import { AddProd } from "./app/screens/AdministradorScreen/AgregarProductoScreen";
-import { Clientes } from "./app/screens/AdministradorScreen/Clients";
-import { RegistrarNuevo } from "./app/screens/AdministradorScreen/RegistrarUsuarioNuevo";
+
 import theme from "./app/theme/theme";
-import { DetallePedido } from "./app/screens/AdministradorScreen/DetallePedido";
 import { PedidoContext } from "./app/context/PedidosContext";
 import { ListaPedidosNoProcesados } from "./app/screens/TiposPedidoScreen/PedidosNoProcesadosScreen";
 import { ListaPedidosProcesados } from "./app/screens/TiposPedidoScreen/PedidosProcesadosScreen";
-import { DetallePedidoNopProcesado } from "./app/screens/AdministradorScreen/DetallePedidoaNoProcesado";
 import { doc, getDoc } from "firebase/firestore";
 /*WATSON IMPORTACIONES */
 import { AniadirActivos } from "./app/screens/SeguridadInformatica/AgregarActivoScreen";

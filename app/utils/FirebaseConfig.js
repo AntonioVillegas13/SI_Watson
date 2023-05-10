@@ -22,12 +22,6 @@ const firebaseConfig = {
     measurementId: "G-0JE71P36XV"
   
 };
-
-
-
-
-
-
 export const loadConfiguration=()=>{
    // Alert.alert("carga la configuracio!!!");
     const app = initializeApp(firebaseConfig);

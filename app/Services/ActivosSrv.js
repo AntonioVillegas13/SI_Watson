@@ -23,9 +23,9 @@ export const consultarUnActivo = async (id,fnsetObj) => {
 }
 
 
-export const consultarProducto = async () => {
+export const consultarActivo = async (setId) => {
     //console.log("globla",global.dbCon);
-    const productoRef = collection(global.dbCon, "Producto");
+    const productoRef = collection(global.dbCon, "Activos");
     const SnapProductos = await getDocs(productoRef);
     let ProductosArray = []
     SnapProductos.forEach((documento) => {
@@ -33,9 +33,8 @@ export const consultarProducto = async () => {
         ProductosArray.push(documento.data());
 
     });
-
-    global.ListaProducto = ProductosArray
-    console.log("productoFunc", ProductosArray);
+    console.log('total dentro',ProductosArray.length)
+    setId(ProductosArray.length)
 
 }
 

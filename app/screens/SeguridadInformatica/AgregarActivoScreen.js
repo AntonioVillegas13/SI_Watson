@@ -10,14 +10,13 @@ import {
 import { Card, Text, TextInput, DropDown } from "react-native-paper";
 import theme from "../../theme/theme";
 import { Button, Icon } from "@rneui/base";
-import { AddActive } from "../../Services/ActivosSrv";
+import { AddActive, consultarActivo } from "../../Services/ActivosSrv";
 import uuid from "react-native-uuid";
 import * as ImagePicker from "expo-image-picker";
 import { SubirFoto, SubirIamgen } from "../../Services/ImagesSrv";
 import Header from "../../Components/Header";
 import { TouchableOpacity } from "react-native-web";
 import StyledText from "../../Components/StyledText";
-import { Productos } from "../AdministradorScreen/Productos";
 
 export function AniadirActivos({ route, navigation }) {
   const [Idaux, setId] = useState("A-");
@@ -38,10 +37,33 @@ export function AniadirActivos({ route, navigation }) {
   const [iamgeBase64, setImageBase64] = useState("");
 
   const [Url, setUrl] = useState("");
+  const [Id2, setId2] = useState(0)
+  useEffect(()=> {
+
+    const consulta=async()=>{
+        await  consultarActivo(setId2);
+
+    }
+    consulta();
+  }, []);
 
   useEffect(() => {
-console.log((parseFloat(Confidencialidad) + parseFloat(Integridad) + parseFloat(Disponibilidad)))
-    setVA(((parseFloat(Confidencialidad) + parseFloat(Integridad) + parseFloat(Disponibilidad))/3).toFixed(2));
+
+    console.log("Idfuera",Id2)
+
+    console.log(
+      parseFloat(Confidencialidad) +
+        parseFloat(Integridad) +
+        parseFloat(Disponibilidad)
+    );
+    setVA(
+      (
+        (parseFloat(Confidencialidad) +
+          parseFloat(Integridad) +
+          parseFloat(Disponibilidad)) /
+        3
+      ).toFixed(2)
+    );
     console.log("VA", VA);
   }, [Confidencialidad, Integridad, Disponibilidad]);
 
@@ -106,8 +128,8 @@ console.log((parseFloat(Confidencialidad) + parseFloat(Integridad) + parseFloat(
 
         <TextInput
           label="N° de Activo"
-          value={Idaux}
-          onChangeText={setId}
+          value={Idaux+Id2+""}
+          editable={false}
           mode="outlined"
           keyboardType="default"
         />
@@ -221,8 +243,7 @@ console.log((parseFloat(Confidencialidad) + parseFloat(Integridad) + parseFloat(
         <TextInput
           style={{ flex: 1, marginRight: 10 }}
           label="VA"
-          value={VA+""}
-      
+          value={VA + ""}
           editable={false}
           mode="outlined"
           keyboardType="default"
