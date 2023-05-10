@@ -33,8 +33,8 @@ export const consultarActivo = async (setId) => {
         ProductosArray.push(documento.data());
 
     });
-    console.log('total dentro',ProductosArray.length)
-    setId(ProductosArray.length)
+    console.log("total dentro A-"+(ProductosArray.length+1))
+    setId("A-"+(ProductosArray.length+1))
 
 }
 

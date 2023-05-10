@@ -41,8 +41,7 @@ export function AniadirActivos({ route, navigation }) {
   useEffect(()=> {
 
     const consulta=async()=>{
-        await  consultarActivo(setId2);
-
+        await  consultarActivo(setId);
     }
     consulta();
   }, []);
@@ -128,10 +127,11 @@ export function AniadirActivos({ route, navigation }) {
 
         <TextInput
           label="N° de Activo"
-          value={Idaux+Id2+""}
+          value={Idaux+""}
           editable={false}
           mode="outlined"
           keyboardType="default"
+          textColor="gray"
         />
 
         <TextInput
@@ -247,6 +247,8 @@ export function AniadirActivos({ route, navigation }) {
           editable={false}
           mode="outlined"
           keyboardType="default"
+          textColor="gray"
+
         />
 
         <StyledText subtitle>-CLASIFICACION DE LOS ACTIVOS </StyledText>
@@ -309,7 +311,6 @@ export function AniadirActivos({ route, navigation }) {
           <Button
             title="Agregar Activo"
             onPress={() => {
-              console.log("prod", Productos);
               AñadirProducto();
             }}
             buttonStyle={{
