@@ -65,6 +65,7 @@ export const ListaActivo = ({ navigation }) => {
       </View>
       <View style={styles.cajaCuerpo}>
         <TarjetaActivos pedidos={pedidos} navegar={navigation} />
+        
       </View>
 
 

@@ -17,6 +17,7 @@ import { SubirFoto, SubirIamgen } from "../../Services/ImagesSrv";
 import Header from "../../Components/Header";
 import { TouchableOpacity } from "react-native-web";
 import StyledText from "../../Components/StyledText";
+import QRCode from "react-native-qrcode-svg";
 
 export function AniadirActivos({ route, navigation }) {
   const [Idaux, setId] = useState("A-");
@@ -37,18 +38,16 @@ export function AniadirActivos({ route, navigation }) {
   const [iamgeBase64, setImageBase64] = useState("");
 
   const [Url, setUrl] = useState("");
-  const [Id2, setId2] = useState(0)
-  useEffect(()=> {
-
-    const consulta=async()=>{
-        await  consultarActivo(setId);
-    }
+  const [Id2, setId2] = useState(0);
+  useEffect(() => {
+    const consulta = async () => {
+      await consultarActivo(setId);
+    };
     consulta();
   }, []);
 
   useEffect(() => {
-
-    console.log("Idfuera",Id2)
+    console.log("Idfuera", Id2);
 
     console.log(
       parseFloat(Confidencialidad) +
@@ -119,7 +118,7 @@ export function AniadirActivos({ route, navigation }) {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <Header />
-        <StyledText subtitle>
+        <StyledText subtitle center>
           {" "}
           IDENTIFICACION DE LOS ACTIVOS DE INFORMACION
         </StyledText>
@@ -127,7 +126,7 @@ export function AniadirActivos({ route, navigation }) {
 
         <TextInput
           label="N° de Activo"
-          value={Idaux+""}
+          value={Idaux + ""}
           editable={false}
           mode="outlined"
           keyboardType="default"
@@ -181,8 +180,7 @@ export function AniadirActivos({ route, navigation }) {
         <View
           style={{
             flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
+            alignItems: "stretch"
           }}
         >
           <TextInput
@@ -193,9 +191,13 @@ export function AniadirActivos({ route, navigation }) {
             mode="outlined"
             keyboardType="default"
           />
-
+        </View >
+        <View style={{
+            alignItems: "center",
+            // justifyContent: "center",
+          }} >
           <Button
-            title="Agregar Imagen"
+            title="Agregar Imagen del Activo"
             onPress={() => {
               pickImages();
             }}
@@ -211,7 +213,7 @@ export function AniadirActivos({ route, navigation }) {
           />
         </View>
         <StyledText subtitle> </StyledText>
-        <StyledText subtitle> VALORACION DE ACTIVOS</StyledText>
+        <StyledText subtitle center > VALORACION DE ACTIVOS</StyledText>
         <StyledText subtitle> </StyledText>
 
         <TextInput
@@ -248,10 +250,9 @@ export function AniadirActivos({ route, navigation }) {
           mode="outlined"
           keyboardType="default"
           textColor="gray"
-
         />
 
-        <StyledText subtitle>-CLASIFICACION DE LOS ACTIVOS </StyledText>
+        <StyledText subtitle center>-CLASIFICACION DE LOS ACTIVOS </StyledText>
         <StyledText subtitle> </StyledText>
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -325,6 +326,7 @@ export function AniadirActivos({ route, navigation }) {
           />
         </View>
       </ScrollView>
+     
     </View>
   );
 }
