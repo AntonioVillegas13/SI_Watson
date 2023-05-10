@@ -28,17 +28,22 @@ export function AniadirActivos({ route, navigation }) {
   const [Ubicacion, setUbicacion] = useState("");
   const [Propietario, setPropietario] = useState("");
   const [Custodio, setCustodio] = useState("");
-  const [Confidencialidad, setConfidencialidad] = useState("");
-  const [Integridad, setIntegridad] = useState("");
-  const [Disponibilidad, setDisponibilidad] = useState("");
-  const [VA, setVA] = useState("");
+  const [Confidencialidad, setConfidencialidad] = useState(0);
+  const [Integridad, setIntegridad] = useState(0);
+  const [Disponibilidad, setDisponibilidad] = useState(0);
+  const [VA, setVA] = useState(0);
 
   const [selectedValue, setSelectedValue] = useState("");
- 
 
   const [iamgeBase64, setImageBase64] = useState("");
 
   const [Url, setUrl] = useState("");
+
+  useEffect(() => {
+console.log((parseFloat(Confidencialidad) + parseFloat(Integridad) + parseFloat(Disponibilidad)))
+    setVA(((parseFloat(Confidencialidad) + parseFloat(Integridad) + parseFloat(Disponibilidad))/3).toFixed(2));
+    console.log("VA", VA);
+  }, [Confidencialidad, Integridad, Disponibilidad]);
 
   const pickImages = async () => {
     let resultado = await ImagePicker.launchCameraAsync({
@@ -81,12 +86,11 @@ export function AniadirActivos({ route, navigation }) {
       Propietario: Propietario,
       Custodio: Custodio,
       url: Url,
-      Confidencialidad:Confidencialidad,
-      Integridad:Integridad,
-      Disponibilidad:Disponibilidad,
-      VA:VA,
-      selectedValue:selectedValue
-
+      Confidencialidad: Confidencialidad,
+      Integridad: Integridad,
+      Disponibilidad: Disponibilidad,
+      VA: VA,
+      selectedValue: selectedValue,
     });
   };
 
@@ -217,8 +221,9 @@ export function AniadirActivos({ route, navigation }) {
         <TextInput
           style={{ flex: 1, marginRight: 10 }}
           label="VA"
-          value={VA}
-          onChangeText={setVA}
+          value={VA+""}
+      
+          editable={false}
           mode="outlined"
           keyboardType="default"
         />
@@ -226,11 +231,11 @@ export function AniadirActivos({ route, navigation }) {
         <StyledText subtitle>-CLASIFICACION DE LOS ACTIVOS </StyledText>
         <StyledText subtitle> </StyledText>
 
-        <View style={{flexDirection:"row", justifyContent:"space-between"}}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Button
             title="Critico"
             onPress={() => {
-              setSelectedValue("Critico")
+              setSelectedValue("Critico");
             }}
             buttonStyle={{
               borderRadius: 10,
@@ -247,12 +252,11 @@ export function AniadirActivos({ route, navigation }) {
           <Button
             title="Importante"
             onPress={() => {
-              setSelectedValue("Importante")
-             
+              setSelectedValue("Importante");
             }}
             buttonStyle={{
               borderRadius: 10,
-              backgroundColor:"blue",
+              backgroundColor: "blue",
               alignSelf: "auto",
             }}
             containerStyle={{
@@ -265,8 +269,7 @@ export function AniadirActivos({ route, navigation }) {
           <Button
             title="Secundario"
             onPress={() => {
-              setSelectedValue("Secundario")
-              
+              setSelectedValue("Secundario");
             }}
             buttonStyle={{
               borderRadius: 10,
@@ -285,9 +288,8 @@ export function AniadirActivos({ route, navigation }) {
           <Button
             title="Agregar Activo"
             onPress={() => {
-              console.log("prod",Productos)
+              console.log("prod", Productos);
               AñadirProducto();
-              
             }}
             buttonStyle={{
               borderRadius: 10,
@@ -296,7 +298,7 @@ export function AniadirActivos({ route, navigation }) {
             containerStyle={{
               width: 100,
               paddingTop: 40,
-              marginLeft:120
+              marginLeft: 120,
             }}
           />
         </View>
