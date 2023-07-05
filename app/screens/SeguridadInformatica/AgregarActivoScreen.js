@@ -17,7 +17,8 @@ import { SubirFoto, SubirIamgen } from "../../Services/ImagesSrv";
 import Header from "../../Components/Header";
 import { TouchableOpacity } from "react-native-web";
 import StyledText from "../../Components/StyledText";
-import QRCode from "react-native-qrcode-svg";
+// import QRCode from "react-native-qrcode-svg";
+import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 
 export function AniadirActivos({ route, navigation }) {
   const [Idaux, setId] = useState("A-");
@@ -32,7 +33,7 @@ export function AniadirActivos({ route, navigation }) {
   const [Integridad, setIntegridad] = useState(0);
   const [Disponibilidad, setDisponibilidad] = useState(0);
   const [VA, setVA] = useState(0);
-
+  const [selectedItem, setSelectedItem] = useState(null);
   const [selectedValue, setSelectedValue] = useState("");
 
   const [iamgeBase64, setImageBase64] = useState("");
@@ -73,8 +74,8 @@ export function AniadirActivos({ route, navigation }) {
       // base64:true
     });
     console.log("Imagen Uri:", resultado.assets[0].uri);
-    // await setImageBase64(resultado.assets[0].uri);
-    // await SubirFoto(resultado.assets[0].uri, Idaux, setUrl);
+    await setImageBase64(resultado.assets[0].uri);
+    await SubirFoto(resultado.assets[0].uri, Idaux + "", setUrl);
   };
 
   const AñadirProducto = () => {
@@ -92,6 +93,7 @@ export function AniadirActivos({ route, navigation }) {
       Propietario: Propietario,
       Custodio: Custodio,
       url: Url,
+      para: selectedItem
     });
 
     AddActive({
@@ -111,6 +113,8 @@ export function AniadirActivos({ route, navigation }) {
       Disponibilidad: Disponibilidad,
       VA: VA,
       selectedValue: selectedValue,
+      para: selectedItem
+
     });
   };
 
@@ -123,7 +127,6 @@ export function AniadirActivos({ route, navigation }) {
           IDENTIFICACION DE LOS ACTIVOS DE INFORMACION
         </StyledText>
         <StyledText subtitle> </StyledText>
-
         <TextInput
           label="N° de Activo"
           value={Idaux + ""}
@@ -132,7 +135,6 @@ export function AniadirActivos({ route, navigation }) {
           keyboardType="default"
           textColor="gray"
         />
-
         <TextInput
           label="Macro Proceso"
           value={MacroProceso}
@@ -140,7 +142,6 @@ export function AniadirActivos({ route, navigation }) {
           mode="outlined"
           keyboardType="default"
         />
-
         <TextInput
           label="Area encargada"
           value={AreaEncargada}
@@ -148,7 +149,19 @@ export function AniadirActivos({ route, navigation }) {
           mode="outlined"
           keyboardType="default"
         />
+        {/* <AutocompleteDropdown
+          clearOnFocus={false}
+          closeOnBlur={true}
+          closeOnSubmit={false}
+          initialValue={{ id: "2" }} // or just '2'
+          onSelectItem={setSelectedItem}
+          dataSet={[
+            { id: "1", title: "Computacion" },
+            { id: "2", title: "Sistemas" }
 
+          ]}
+        /> */}
+        
         <TextInput
           label="Nombre Activo"
           value={NombreActivo}
@@ -180,7 +193,7 @@ export function AniadirActivos({ route, navigation }) {
         <View
           style={{
             flexDirection: "row",
-            alignItems: "stretch"
+            alignItems: "stretch",
           }}
         >
           <TextInput
@@ -191,11 +204,13 @@ export function AniadirActivos({ route, navigation }) {
             mode="outlined"
             keyboardType="default"
           />
-        </View >
-        <View style={{
+        </View>
+        <View
+          style={{
             alignItems: "center",
             // justifyContent: "center",
-          }} >
+          }}
+        >
           <Button
             title="Agregar Imagen del Activo"
             onPress={() => {
@@ -213,9 +228,11 @@ export function AniadirActivos({ route, navigation }) {
           />
         </View>
         <StyledText subtitle> </StyledText>
-        <StyledText subtitle center > VALORACION DE ACTIVOS</StyledText>
+        <StyledText subtitle center>
+          {" "}
+          VALORACION DE ACTIVOS
+        </StyledText>
         <StyledText subtitle> </StyledText>
-
         <TextInput
           style={{ flex: 1, marginRight: 10 }}
           label="Confidencialidad"
@@ -224,7 +241,6 @@ export function AniadirActivos({ route, navigation }) {
           mode="outlined"
           keyboardType="number-pad"
         />
-
         <TextInput
           style={{ flex: 1, marginRight: 10 }}
           label="Integridad"
@@ -233,7 +249,6 @@ export function AniadirActivos({ route, navigation }) {
           mode="outlined"
           keyboardType="number-pad"
         />
-
         <TextInput
           style={{ flex: 1, marginRight: 10 }}
           label="Disponibilidad"
@@ -251,10 +266,10 @@ export function AniadirActivos({ route, navigation }) {
           keyboardType="default"
           textColor="gray"
         />
-
-        <StyledText subtitle center>-CLASIFICACION DE LOS ACTIVOS </StyledText>
+        <StyledText subtitle center>
+          -CLASIFICACION DE LOS ACTIVOS{" "}
+        </StyledText>
         <StyledText subtitle> </StyledText>
-
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Button
             title="Critico"
@@ -307,7 +322,6 @@ export function AniadirActivos({ route, navigation }) {
             }}
           />
         </View>
-
         <View style={styles.cajaBotones}>
           <Button
             title="Agregar Activo"
@@ -326,7 +340,6 @@ export function AniadirActivos({ route, navigation }) {
           />
         </View>
       </ScrollView>
-     
     </View>
   );
 }

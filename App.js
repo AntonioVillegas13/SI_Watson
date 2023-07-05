@@ -22,7 +22,13 @@ import { doc, getDoc } from "firebase/firestore";
 import { AniadirActivos } from "./app/screens/SeguridadInformatica/AgregarActivoScreen";
 import { ListaActivo } from "./app/screens/SeguridadInformatica/ListaActivosScreen";
 import { DetalleActivo } from "./app/screens/SeguridadInformatica/DetalleActivo";
+import { AniadirVulnerabilidad } from "./app/screens/AmenazasyVulnerabilidades/AgregarVulnerabilidad";
+import { ListaVulnerabilidad } from "./app/screens/AmenazasyVulnerabilidades/ListaVulnerabilidadScreen";
+import { DetalleVulnerabilidad } from "./app/screens/AmenazasyVulnerabilidades/DetalleVulnerabilidad";
+
 const StackManjActivos = createNativeStackNavigator();
+const StackManjVulnerabilidad = createNativeStackNavigator();
+
 const StackMoProd = createNativeStackNavigator();
 const LoginStack = createNativeStackNavigator();
 const StackClient = createNativeStackNavigator();
@@ -44,6 +50,8 @@ const Watson = () => {
             iconName = "list-alt";
           } else if (route.name === "Clientes") {
             iconName = "users";
+          } else if (route.name === "ManejoVulnerabilidades") {
+            iconName = "bitbucket-square";
           }
 
           // You can return any component that you like here!
@@ -76,6 +84,15 @@ const Watson = () => {
           title: "Activos",
         }}
       />
+
+      <TabWatson.Screen
+        name="ManejoVulnerabilidades"
+        component={ManejoVulnerabilidades}
+        options={{
+          headerShown: false,
+          title: "Vulnerabilidades",
+        }}
+      />
     </TabWatson.Navigator>
   );
 };
@@ -106,16 +123,39 @@ const ManejoActivos = () => {
         }}
         component={DetalleActivo}
       />
-
     </StackManjActivos.Navigator>
   );
 };
 
+const ManejoVulnerabilidades = () => {
+  return (
+    <StackManjVulnerabilidad.Navigator>
+      <StackManjVulnerabilidad.Screen
+        name="ListaVulnerabilidad"
+        component={ListaVulnerabilidad}
+        options={{
+          title: "ListaVulnerabilidadScreen",
+          headerShown: false,
+        }}
+      />
 
-
-
-
-
+      <StackManjVulnerabilidad.Screen
+        name="AniadirVulnerabilidad"
+        options={{
+          headerShown: false,
+        }}
+        component={AniadirVulnerabilidad}
+      />
+      <StackManjVulnerabilidad.Screen
+        name="DetalleVulnerabilidad"
+        options={{
+          headerShown: false,
+        }}
+        component={DetalleVulnerabilidad}
+      />
+    </StackManjVulnerabilidad.Navigator>
+  );
+};
 
 const LoginNav = () => {
   return (

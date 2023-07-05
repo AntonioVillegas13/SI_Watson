@@ -18,6 +18,7 @@ export const TarjetaDetalleActivo = (props) => {
   const ObjPedido = props.objPedido;
   console.log("PEDIDO", Pedido);
   console.log("PEDIDO OBJETO", ObjPedido);
+  console.log("PEDIDO OBJETO", ObjPedido);
 
   return (
     <ScrollView>
@@ -99,10 +100,11 @@ export const TarjetaDetalleActivo = (props) => {
             <StyledText subtitle bold margin>
               Url{" "}
             </StyledText>
+            <Text>sfdsfdsr</Text>
             <Image
               style={styles.logo}
               source={{
-                uri: ObjPedido.url,
+                uri:"https://firebasestorage.googleapis.com/v0/b/seguridadinformatica-59a75.appspot.com/o/imageA-1.jpeg?alt=media&token=c2a8ba6a-4535-42ea-97db-16e7c2627857",
               }}
             />
           </View>
