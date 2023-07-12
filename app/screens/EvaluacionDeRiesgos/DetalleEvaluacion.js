@@ -9,10 +9,10 @@ import StyledText from "../../Components/StyledText";
 import Header from "../../Components/Header";
 import { TarjetaDetalleActivo } from "../../Components/DetActivo";
 import { consultarUnActivo } from "../../Services/ActivosSrv";
-import { TarjetaDetalleVulnerabilidad } from "../../Components/DetVulnera";
-import { consultarUnVulnerability } from "../../Services/VulnerabilidadesSrv";
+import { TarjetaDetalleEvaluacion } from "../../Components/DetEnvuala";
+import { consultarUnEvaluacion, consultarUnVulnerability } from "../../Services/VulnerabilidadesSrv";
 
-export const DetalleVulnerabilidad = ({ route, navigation }) => {
+export const DetalleEvaluacion = ({ route, navigation }) => {
     const { id } = route.params;
     const [ObjPedido, setObjPedido] = useState({});
     useEffect(() => {
@@ -25,7 +25,7 @@ export const DetalleVulnerabilidad = ({ route, navigation }) => {
     const consultar = async () => {
 
 
-        await consultarUnVulnerability(id, setObjPedido);
+        await consultarUnEvaluacion(id, setObjPedido);
         console.log("---------------------------OBJPedido", ObjPedido)
 
     }
@@ -37,7 +37,7 @@ export const DetalleVulnerabilidad = ({ route, navigation }) => {
         <View>
             <ScrollView>
                 <Header back={() => navigation?.goBack()} />
-                <StyledText title bold center>Resumen de Vulnerabilidad</StyledText >
+                <StyledText title bold center>Resumen de Evaluacion</StyledText >
                 <View style={{ alignItems: "center" }}>
                 </View>
 
@@ -45,7 +45,7 @@ export const DetalleVulnerabilidad = ({ route, navigation }) => {
 
 
                 <View>
-                    <TarjetaDetalleVulnerabilidad
+                    <TarjetaDetalleEvaluacion
                         item={id}
                         objPedido={ObjPedido}
                     />

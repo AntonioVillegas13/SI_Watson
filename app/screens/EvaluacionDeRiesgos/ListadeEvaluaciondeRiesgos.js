@@ -22,7 +22,9 @@ import { useContext } from "react";
 import Header from "../../Components/Header";
 import { TarjetaActivos } from "../../Components/Activos";
 import { TarjetaVulnerabilidad } from "../../Components/VulnerabilitadCard";
-export const ListaVulnerabilidad = ({ navigation }) => {
+import{consultarListaEvaluaciones } from "../../Services/EvaluacionSrv"
+import { TarjetaEvaluacion } from "../../Components/EvaluacionCard";
+export const ListaEvaluacionRiesgos = ({ navigation }) => {
   const { user, setUser } = useContext(PedidoContext);
   const [uid2, setUid] = useState("3");
   const [pedidos, setPedidos] = useState([]);
@@ -41,7 +43,7 @@ export const ListaVulnerabilidad = ({ navigation }) => {
     console.log("------------------------- Recuperar vulnerab");
 
     console.log("recupernado datos ", uid2);
-    await consultarListaVulnerabilidades(setPedidos);
+    await consultarListaEvaluaciones(setPedidos);
     console.log("VulnerabilidaesdesdeFirestore:", pedidos);
 
   };
@@ -63,10 +65,10 @@ export const ListaVulnerabilidad = ({ navigation }) => {
       <Header />
 
       <View style={styles.cajaCabecera}>
-        <Text style={{ fontSize: theme.fontSize.subtitle }}>LISTA DE VULNERABILIDADES</Text>
+        <Text style={{ fontSize: theme.fontSize.subtitle }}>LISTA DE EVALUACION</Text>
       </View>
       <View style={styles.cajaCuerpo}>
-        <TarjetaVulnerabilidad pedidos={pedidos} navegar={navigation} />
+        <TarjetaEvaluacion pedidos={pedidos} navegar={navigation} />
         
       </View>
 
@@ -77,9 +79,19 @@ export const ListaVulnerabilidad = ({ navigation }) => {
                 color="gray"
                 icon={{ name: 'add', color: 'white' }}
                 onPress={() => {
-                    navigation.navigate("AniadirVulnerabilidad")
+                    navigation.navigate("AniadirEvaluaciona")
                 }}
             />
+
+<FAB
+            
+            style={styles.fab3}
+            color="gray"
+            
+            onPress={() => {
+                navigation.navigate("ListaMitigacion")
+            }}
+        />
 
 <Icon
         raised
@@ -106,6 +118,13 @@ const styles = StyleSheet.create({
       bottom: 0,
     
   },
+  fab2: {
+    position: 'absolute',
+    marginHorizontal: 106,
+    left: 0,
+    bottom: 0,
+  
+},
   container: {
     flex: 1,
     backgroundColor: "#ffff",

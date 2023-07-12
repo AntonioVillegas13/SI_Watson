@@ -1,17 +1,72 @@
 
-
 import { collection, doc, getDocs, setDoc, addDoc, getDoc, query, where } from 'firebase/firestore'
+export const consultarListaEvaluaciones = async (fnsetPedidos) => {
+    
+    // console.log("global--------------------------------",Id);
+    // const productoRef = collection(global.dbCon, "Pedidos");
+    const productoRef= collection(global.dbCon, "Evaluacion");
+console.log("VulnerabilidaesdesdeFirestore----------------------")
+    const SnapPedidos = await getDocs(productoRef);
+    let PedidoArray = []
+    await SnapPedidos.forEach((documento) => {
+        console.log("doc", documento.data());
+       
+            console.log("doce-------------------", documento.data());
+            PedidoArray.push(documento.data());
+            console.log("VulnerabilidaesdesdeFirestore")
+        
 
-export const AddActive=(producto)=>{
+
+
+    });
+
+    fnsetPedidos(PedidoArray)
+    console.log("pediFunc2", PedidoArray);
+
+}
+
+
+
+
+
+
+export const consultarListaMitigaciones = async (fnsetPedidos) => {
+    
+    // console.log("global--------------------------------",Id);
+    // const productoRef = collection(global.dbCon, "Pedidos");
+    const productoRef= collection(global.dbCon, "Mitigacion");
+console.log("VulnerabilidaesdesdeFirestore----------------------")
+    const SnapPedidos = await getDocs(productoRef);
+    let PedidoArray = []
+    await SnapPedidos.forEach((documento) => {
+        console.log("doc", documento.data());
+       
+            console.log("doce-------------------", documento.data());
+            PedidoArray.push(documento.data());
+            console.log("VulnerabilidaesdesdeFirestore")
+        
+
+
+
+    });
+
+    fnsetPedidos(PedidoArray)
+    console.log("pediFunc2", PedidoArray);
+
+}
+
+
+
+export const AddVulnerability=(producto)=>{
     console.log(global.dbCon);
-    const productRef = doc(global.dbCon, "Activos", producto.id);
+    const productRef = doc(global.dbCon, "Vulnerabilidades", producto.NActivo);
     setDoc(productRef, producto);
 
 }
 
-export const consultarUnActivo = async (id,fnsetObj) => {
+export const consultarUnVulnerability = async (id,fnsetObj) => {
     //console.log("globla",global.dbCon);
-    const productoRef = doc(global.dbCon, "Activos",id);
+    const productoRef = doc(global.dbCon, "Vulnerabilidades",id);
     const docSnap = await getDoc(productoRef);
     console.log("dsfdsfdfdsfdsfds",docSnap.data());
 
@@ -23,9 +78,9 @@ export const consultarUnActivo = async (id,fnsetObj) => {
 }
 
 
-export const consultarActivo = async (setId) => {
+export const consultarVulnerability = async (setId) => {
     //console.log("globla",global.dbCon);
-    const productoRef = collection(global.dbCon, "Activos");
+    const productoRef = collection(global.dbCon, "Vulnerabilidades");
     const SnapProductos = await getDocs(productoRef);
     let ProductosArray = []
     SnapProductos.forEach((documento) => {
@@ -38,7 +93,7 @@ export const consultarActivo = async (setId) => {
 
 }
 
-export const enviarPedidos = (pedido) => {
+export const enviarVulnerability = (pedido) => {
     const pedidoRef = doc(global.dbCon, "Pedidos", pedido.codigo);
     setDoc(pedidoRef, pedido);
 
@@ -47,7 +102,7 @@ export const enviarPedidos = (pedido) => {
 
 }
 
-export const CambiarProducto=(producto)=>{
+export const CambiarVulnerability=(producto)=>{
     console.log(global.dbCon);
     const productRef = doc(global.dbCon, "Producto", producto.id);
     setDoc(productRef, producto);

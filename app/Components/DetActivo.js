@@ -65,7 +65,7 @@ export const TarjetaDetalleActivo = (props) => {
               NActivo{" "}
             </StyledText>
             <StyledText bold margin>
-              {ObjPedido.NActivo}
+              {ObjPedido.id}
             </StyledText>
           </View>
 
@@ -74,7 +74,7 @@ export const TarjetaDetalleActivo = (props) => {
               NombreActivo{" "}
             </StyledText>
             <StyledText bold margin>
-              {ObjPedido.NombreActivo}
+              {ObjPedido.title}
             </StyledText>
           </View>
 

@@ -97,12 +97,12 @@ export function AniadirActivos({ route, navigation }) {
     });
 
     AddActive({
-      NActivo: Idaux,
+      id: Idaux,
       MacroProceso: MacroProceso,
       AreaEncargada: AreaEncargada,
       NombreActivo: NombreActivo,
       Descripcion: Descripcion,
-      NombreActivo: NombreActivo,
+      title: NombreActivo,
       Descripcion: Descripcion,
       Ubicacion: Ubicacion,
       Propietario: Propietario,
@@ -327,6 +327,7 @@ export function AniadirActivos({ route, navigation }) {
             title="Agregar Activo"
             onPress={() => {
               AñadirProducto();
+              navigation.navigate("ListaActivos")
             }}
             buttonStyle={{
               borderRadius: 10,

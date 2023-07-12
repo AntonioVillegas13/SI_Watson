@@ -1,6 +1,6 @@
 import { FlatList, ScrollView, TouchableHighlight, StyleSheet, View, Text } from "react-native";
 
-export const TarjetaActivos = (props) => {
+export const TarjetaVulnerabilidad = (props) => {
 
 
 
@@ -8,22 +8,22 @@ export const TarjetaActivos = (props) => {
 
 
 
-    let ItemProduct = ({ prod, indice }) => {
+    let ItemVulnerabilidad = ({ prod, indice }) => {
 
     console.log("Prod:",prod)
-    console.log("Prod:",prod.NActivo)
+    console.log("Prod:",prod.id)
 
         return (
 
             <ScrollView style={styles.impar} >
                <TouchableHighlight onPress={() => {
-                    console.log("prod----------------------------------", prod.NActivo)
-                    props.navegar.navigate('DetalleActivo', { id: prod.id })
+                    console.log("prod----------------------------------", prod.id)
+                    props.navegar.navigate('DetalleVulnerabilidad', { id: prod.id })
                 }}>
 
                     <View style={{ margin: 10 }}>
                         <View style={styles.ViewRow}>
-                            <Text>PEDIDO #</Text>
+                            <Text>Vulnerabilidad #</Text>
                             <Text>{prod.id}</Text>
                             <Text>{prod.title}</Text>
                         </View>
@@ -45,9 +45,8 @@ export const TarjetaActivos = (props) => {
     return <FlatList
         data={props.pedidos}
         renderItem={(e) => {
-
-            return <ItemProduct
-                indice={e.Nactivos}
+            return <ItemVulnerabilidad
+                indice={e.id}
                 prod={e.item}
             />
         }}

@@ -40,7 +40,7 @@ export const ListaActivo = ({ navigation }) => {
 
     console.log("recupernado datos ", uid2);
     await consultarNoProcesado(setPedidos);
-    console.log("OED", pedidos);
+  
 
   };
 

@@ -19,12 +19,13 @@ import { TouchableOpacity } from "react-native-web";
 import StyledText from "../../Components/StyledText";
 // import QRCode from "react-native-qrcode-svg";
 import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
+import { AddVulnerability, consultarVulnerability } from "../../Services/VulnerabilidadesSrv";
 
 export function AniadirVulnerabilidad({ route, navigation }) {
   const [Idaux, setId] = useState("A-");
   const [MacroProceso, setMacroProceso] = useState("");
   const [NombreVulnerabilidad, setNombreVulnerabilidad] = useState("");
-  const [Amenaza, setAmenaza] = useState("");
+  const [Vulnerabilidad, setVulnerabilidad] = useState("");
   const [Descripcion, setDescripcion] = useState("");
   const [Ubicacion, setUbicacion] = useState("");
   const [Propietario, setPropietario] = useState("");
@@ -42,7 +43,7 @@ export function AniadirVulnerabilidad({ route, navigation }) {
   const [Id2, setId2] = useState(0);
   useEffect(() => {
     const consulta = async () => {
-      await consultarActivo(setId);
+      await consultarVulnerability(setId);
     };
     consulta();
   }, []);
@@ -85,9 +86,7 @@ export function AniadirVulnerabilidad({ route, navigation }) {
       NActivo: Idaux,
       MacroProceso: MacroProceso,
       NombreVulnerabilidad: NombreVulnerabilidad,
-      Amenaza: Amenaza,
-      Descripcion: Descripcion,
-      Amenaza: Amenaza,
+      Vulnerabilidad: Vulnerabilidad,
       Descripcion: Descripcion,
       Ubicacion: Ubicacion,
       Propietario: Propietario,
@@ -96,11 +95,11 @@ export function AniadirVulnerabilidad({ route, navigation }) {
       para: selectedItem
     });
 
-    AddActive({
-      NActivo: Idaux,
-      MacroProceso: MacroProceso,
-      NombreVulnerabilidad: NombreVulnerabilidad,
-      Amenaza: Amenaza
+    AddVulnerability({
+      id: Idaux,
+      value: MacroProceso,
+      title: NombreVulnerabilidad,
+      Vulnerabilidad: Vulnerabilidad
     });
   };
 
@@ -149,11 +148,11 @@ export function AniadirVulnerabilidad({ route, navigation }) {
         /> */}
         
         <TextInput
-          label="Amenaza"
-          value={Amenaza}
-          onChangeText={setAmenaza}
+          label="Vulnerabilidad"
+          value={Vulnerabilidad}
+          onChangeText={setVulnerabilidad}
           mode="outlined"
-          keyboardType="default"
+          keyboardType="number-pad"
         />
       
       
@@ -166,18 +165,19 @@ export function AniadirVulnerabilidad({ route, navigation }) {
 
         <View style={styles.cajaBotones}>
           <Button
-            title="Agregar Activo"
+            title="Agregar Vulnerabilidad"
             onPress={() => {
               AñadirProducto();
+              navigation.navigate("ListaVulnerabilidad")
             }}
             buttonStyle={{
               borderRadius: 10,
               backgroundColor: theme.colors.jade,
             }}
             containerStyle={{
-              width: 100,
+              width: 200,
               paddingTop: 40,
-              marginLeft: 120,
+              marginLeft: "20%",
             }}
           />
         </View>

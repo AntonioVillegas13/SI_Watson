@@ -25,9 +25,14 @@ import { DetalleActivo } from "./app/screens/SeguridadInformatica/DetalleActivo"
 import { AniadirVulnerabilidad } from "./app/screens/AmenazasyVulnerabilidades/AgregarVulnerabilidad";
 import { ListaVulnerabilidad } from "./app/screens/AmenazasyVulnerabilidades/ListaVulnerabilidadScreen";
 import { DetalleVulnerabilidad } from "./app/screens/AmenazasyVulnerabilidades/DetalleVulnerabilidad";
+import { ListaEvaluacionRiesgos } from "./app/screens/EvaluacionDeRiesgos/ListadeEvaluaciondeRiesgos";
+import { AniadirEvaluaciona } from "./app/screens/EvaluacionDeRiesgos/AgregarEvaluacion";
+import { DetalleEvaluacion } from "./app/screens/EvaluacionDeRiesgos/DetalleEvaluacion";
+import { ListaMitigacion } from "./app/screens/EvaluacionDeRiesgos/Listademitigaciones";
 
 const StackManjActivos = createNativeStackNavigator();
 const StackManjVulnerabilidad = createNativeStackNavigator();
+const StackEvaluacionRiesgo = createNativeStackNavigator();
 
 const StackMoProd = createNativeStackNavigator();
 const LoginStack = createNativeStackNavigator();
@@ -52,6 +57,8 @@ const Watson = () => {
             iconName = "users";
           } else if (route.name === "ManejoVulnerabilidades") {
             iconName = "bitbucket-square";
+          } else if (route.name === "EvaluacióndeRiesgo") {
+            iconName = "archive";
           }
 
           // You can return any component that you like here!
@@ -91,6 +98,14 @@ const Watson = () => {
         options={{
           headerShown: false,
           title: "Vulnerabilidades",
+        }}
+      />
+      <TabWatson.Screen
+        name="EvaluacióndeRiesgo"
+        component={ManejoEvaluacióndeRiesgo}
+        options={{
+          headerShown: false,
+          title: "ManejoEvaluacióndeRiesgo",
         }}
       />
     </TabWatson.Navigator>
@@ -154,6 +169,47 @@ const ManejoVulnerabilidades = () => {
         component={DetalleVulnerabilidad}
       />
     </StackManjVulnerabilidad.Navigator>
+  );
+};
+
+const ManejoEvaluacióndeRiesgo = () => {
+  return (
+    <StackEvaluacionRiesgo.Navigator>
+      <StackEvaluacionRiesgo.Screen
+        name="ListaEvaluacionRiesgos"
+        component={ListaEvaluacionRiesgos}
+        options={{
+          title: "ListaEvaluacionRiesgosScreen",
+          headerShown: false,
+        }}
+      />
+
+      <StackEvaluacionRiesgo.Screen
+        name="AniadirEvaluaciona"
+        component={AniadirEvaluaciona}
+        options={{
+          title: "AniadirEvaluacionaScreen",
+          headerShown: false,
+        }}
+      />
+      <StackEvaluacionRiesgo.Screen
+        name="DetalleEvaluacion"
+        component={DetalleEvaluacion}
+        options={{
+          title: "DetalleEvaluacion",
+          headerShown: false,
+        }}
+      />
+
+      <StackEvaluacionRiesgo.Screen
+        name="ListaMitigacion"
+        component={ListaMitigacion}
+        options={{
+          title: "ListaMitigacion",
+          headerShown: false,
+        }}
+      />
+    </StackEvaluacionRiesgo.Navigator>
   );
 };
 

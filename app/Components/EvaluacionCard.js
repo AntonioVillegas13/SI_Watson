@@ -1,6 +1,6 @@
 import { FlatList, ScrollView, TouchableHighlight, StyleSheet, View, Text } from "react-native";
 
-export const TarjetaActivos = (props) => {
+export const TarjetaEvaluacion = (props) => {
 
 
 
@@ -8,22 +8,22 @@ export const TarjetaActivos = (props) => {
 
 
 
-    let ItemProduct = ({ prod, indice }) => {
+    let ItemVulnerabilidad = ({ prod, indice }) => {
 
     console.log("Prod:",prod)
-    console.log("Prod:",prod.NActivo)
+    console.log("Prod:",prod.id)
 
         return (
 
             <ScrollView style={styles.impar} >
                <TouchableHighlight onPress={() => {
-                    console.log("prod----------------------------------", prod.NActivo)
-                    props.navegar.navigate('DetalleActivo', { id: prod.id })
+                    console.log("prod----------------------------------", prod.id)
+                    props.navegar.navigate('DetalleEvaluacion', { id: prod.id })
                 }}>
 
                     <View style={{ margin: 10 }}>
                         <View style={styles.ViewRow}>
-                            <Text>PEDIDO #</Text>
+                            <Text>Vulnerabilidadsss #</Text>
                             <Text>{prod.id}</Text>
                             <Text>{prod.title}</Text>
                         </View>
@@ -45,9 +45,8 @@ export const TarjetaActivos = (props) => {
     return <FlatList
         data={props.pedidos}
         renderItem={(e) => {
-
-            return <ItemProduct
-                indice={e.Nactivos}
+            return <ItemVulnerabilidad
+                indice={e.id}
                 prod={e.item}
             />
         }}
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         width: "90%",
-        // backgroundColor: '#E09726',
+        backgroundColor: '#E09726',
         borderRadius: 5,
         borderWidth: 2
 
