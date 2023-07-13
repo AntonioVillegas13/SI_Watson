@@ -13,14 +13,16 @@ import theme from "../theme/theme";
 import PedidoCard from "./PedidoCard";
 import StyledText from "./StyledText";
 import { AddMitigacion } from "../Services/VulnerabilidadesSrv";
-
+import uuid from 'react-native-uuid';
 import { Card, TextInput, DropDown } from "react-native-paper";
 import { Button, Icon } from "@rneui/base";
+import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 
 export const TarjetaDetalleEvaluacion = (props) => {
   const Pedido = props.item;
   const [Control, setControl] = useState("");
   const [tratamiento, setTratamiento] = useState("");
+  const [selectedItem, setSelectedItem] = useState("");
 
   const ObjPedido = props.objPedido;
   console.log("PEDIDO", Pedido);
@@ -37,12 +39,13 @@ export const TarjetaDetalleEvaluacion = (props) => {
       Control:Control,
       Tratamiento:tratamiento
     });
-
+    let idt= uuid.v4()
     AddMitigacion({
-      id:ObjPedido.activo.id,
+      id:idt,
       Todo: ObjPedido,
       Control:Control,
-      Tratamiento:tratamiento
+      Tratamiento:tratamiento,
+      tipodeControl:selectedItem
     });
   };
   return (
@@ -148,6 +151,10 @@ export const TarjetaDetalleEvaluacion = (props) => {
         </ScrollView>
 
         <View>
+      <StyledText title>Total:{ObjPedido.Total}</StyledText>
+
+
+
         <StyledText subtitle center>
             ------------------------------------------------------------------------------------------------------{" "}
           </StyledText>
@@ -155,6 +162,7 @@ export const TarjetaDetalleEvaluacion = (props) => {
             TRATAMIENTO DE RIESGOS{" "}
           </StyledText>
           <Text>Metodo de Tratamiento</Text>
+          
           <TextInput
             label="Metodo de tratamiento"
             value={tratamiento}
@@ -162,9 +170,26 @@ export const TarjetaDetalleEvaluacion = (props) => {
             mode="outlined"
             keyboardType="default"
           />
+
+
+
+
           <Text>Controles</Text>
+          <AutocompleteDropdown
+            clearOnFocus={false}
+            closeOnBlur={true}
+            closeOnSubmit={false}
+            initialValue={{ id: "1" }} // or just '2'
+            onSelectItem={setSelectedItem}
+            dataSet={[
+              {id:1,title:"Administrativo"},
+              {id:2,title:"Fisico"},
+              {id:3,title:"Tecnico"}
+            ]}
+            debounce={600}
+          />
           <TextInput
-            label="Metodo de tratamiento"
+            label="Control"
             value={Control}
             onChangeText={setControl}
             mode="outlined"

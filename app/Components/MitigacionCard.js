@@ -22,7 +22,6 @@ export const TarjetaMitigacion = (props) => {
                         <View style={styles.ViewRow}>
                        
                             <Text>Mitigacion #</Text>
-                            <Text>{prod.id}</Text>
                             <Text>       </Text>
                             <Text>{prod.title}</Text>
                             <Text>       </Text>

@@ -1,4 +1,4 @@
-package com.zantycb89.admin.newarchitecture.modules;
+package com.admin.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

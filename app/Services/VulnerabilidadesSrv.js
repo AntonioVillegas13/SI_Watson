@@ -84,10 +84,11 @@ export const consultarEvaluacion = async (setId) => {
         ProductosArray.push(documento.data());
 
     });
-    console.log("total dentro A-"+(ProductosArray.length+1))
-    setId("A-"+(ProductosArray.length+1))
+    // console.log("total dentro   44444A-"+(ProductosArray.length+1))
+    setId("A-"+(ProductosArray.length+2))
 
 }
+
 
 
 export const enviarVulnerability = (pedido) => {

@@ -69,7 +69,7 @@ export const ListaMitigacion= ({ navigation }) => {
         <Text style={{ fontSize: theme.fontSize.subtitle }}>LISTA DE Mitigaciones</Text>
       </View>
       <View style={styles.cajaCuerpo}>
-      <Text>                                      id          Total      Control  Tratamiento      </Text>
+      <Text>                                       Total      Control  Tratamiento      </Text>
         <TarjetaMitigacion pedidos={pedidos} navegar={navigation} />
         
       </View>
@@ -85,15 +85,7 @@ export const ListaMitigacion= ({ navigation }) => {
                 }}
             />
 
-<FAB
-            
-            style={styles.fab3}
-            color="gray"
-            icon={{ name: 'add', color: 'white' }}
-            onPress={() => {
-                navigation.navigate("AniadirEvaluaciona")
-            }}
-        />
+
 
 <Icon
         raised
