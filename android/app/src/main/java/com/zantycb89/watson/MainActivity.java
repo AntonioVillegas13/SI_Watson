@@ -1,4 +1,4 @@
-package com.admin;
+package com.zantycb89.watson;
 
 import android.os.Build;
 import android.os.Bundle;

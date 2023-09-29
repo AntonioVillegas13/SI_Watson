@@ -1,4 +1,4 @@
-package com.admin.newarchitecture;
+package com.zantycb89.watson.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -20,9 +20,9 @@ import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.admin.BuildConfig;
-import com.admin.newarchitecture.components.MainComponentsRegistry;
-import com.admin.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.zantycb89.watson.BuildConfig;
+import com.zantycb89.watson.newarchitecture.components.MainComponentsRegistry;
+import com.zantycb89.watson.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

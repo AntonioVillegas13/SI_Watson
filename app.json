@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "admin",
-    "slug": "admin",
+    "name": "watson",
+    "slug": "watson",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,14 +25,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#62CBDE"
       },
-      "package": "com.zantycb89.admin"
+      "package": "com.zantycb89.watson"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "23635fa6-65c8-4560-930a-673ec58127e1"
+        "projectId": "977f37f2-6197-40f2-af49-36b24702d270"
       }
     }
   }
